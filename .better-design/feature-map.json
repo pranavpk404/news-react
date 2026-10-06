@@ -10,22 +10,22 @@
         {
           "id": "discover-and-read",
           "name": "Discover and read",
-          "description": "Discover current stories, preview them without losing your place, and save a browser-local reading queue.",
+          "description": "Discover current stories, open the publisher without losing your place, and save a browser-local reading queue.",
           "steps": [
             {
-              "name": "Discover and filter",
+              "name": "Discover, filter and open",
               "route": "/",
               "screen": "Headlines",
-              "action": "Select country/category, search stories and filter sources.",
+              "action": "Select country/category, search stories, filter sources, and open a headline at its publisher.",
               "components": ["src/App.tsx", "src/components/Navbar.tsx", "src/components/CardHolder.tsx", "src/components/CardItem.tsx"],
               "data": ["src/lib/feed.ts", "src/lib/navigation.ts", "../news-api/main.py"]
             },
             {
-              "name": "Preview and save",
-              "route": "/?article=<url>",
-              "screen": "Article preview",
-              "action": "Read the supplied summary, open the publisher or save the story.",
-              "components": ["src/components/ArticleDialog.tsx", "src/components/CardItem.tsx", "src/components/SocialMediaLinks.tsx"],
+              "name": "Save for later",
+              "route": "/",
+              "screen": "Saved story action",
+              "action": "Save a story from the headline list, then find it in browser-local saved reading.",
+              "components": ["src/components/CardItem.tsx", "src/components/ReadingQueue.tsx"],
               "data": ["src/lib/library.ts"]
             }
           ]
