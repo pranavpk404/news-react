@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "product": "News Reader",
+  "features": [
+    {
+      "id": "news-reading",
+      "name": "News reading",
+      "description": "Discover, filter, preview and save published stories; manage a persistent reading queue and inspect feed freshness.",
+      "flows": [
+        {
+          "id": "discover-and-read",
+          "name": "Discover and read",
+          "description": "Discover current stories, preview them without losing your place, and save a browser-local reading queue.",
+          "steps": [
+            {
+              "name": "Discover and filter",
+              "route": "/",
+              "screen": "Headlines",
+              "action": "Select country/category, search stories and filter sources.",
+              "components": ["src/App.tsx", "src/components/Navbar.tsx", "src/components/CardHolder.tsx", "src/components/CardItem.tsx"],
+              "data": ["src/lib/feed.ts", "src/lib/navigation.ts", "../news-api/main.py"]
+            },
+            {
+              "name": "Preview and save",
+              "route": "/?article=<url>",
+              "screen": "Article preview",
+              "action": "Read the supplied summary, open the publisher or save the story.",
+              "components": ["src/components/ArticleDialog.tsx", "src/components/CardItem.tsx", "src/components/SocialMediaLinks.tsx"],
+              "data": ["src/lib/library.ts"]
+            }
+          ]
+        },
+        {
+          "id": "saved-reading-queue",
+          "name": "Saved reading queue",
+          "steps": [
+            {
+              "name": "Browse saved stories",
+              "route": "/?view=saved",
+              "screen": "Saved reading",
+              "action": "Search saved stories and filter read/unread state.",
+              "components": ["src/App.tsx", "src/components/ReadingQueue.tsx"],
+              "data": ["src/lib/library.ts"]
+            },
+            {
+              "name": "Manage reading data",
+              "screen": "Reading queue controls",
+              "action": "Mark stories read, remove stories and export/import validated reading data.",
+              "components": ["src/components/ReadingQueue.tsx"],
+              "data": ["src/lib/library.ts"]
+            }
+          ]
+        },
+        {
+          "id": "feed-refresh-and-freshness",
+          "name": "Feed refresh and freshness",
+          "steps": [
+            {
+              "name": "Refresh feed",
+              "screen": "Background feed request",
+              "action": "Load a validated feed, cancel superseded requests, and retain the last successful result on failure.",
+              "components": ["src/hooks/useFeed.ts"],
+              "data": ["src/lib/feed.ts", "../news-api/main.py"]
+            },
+            {
+              "name": "Inspect freshness",
+              "screen": "Feed details",
+              "action": "Inspect real refresh timestamps and provider outcomes.",
+              "components": ["src/components/FeedDetails.tsx"],
+              "data": ["../news-api/data/status.json", "src/lib/feed.ts"]
+            }
+          ]
+        }
+      ],
+      "components": []
+    }
+  ]
+}
