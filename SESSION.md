@@ -1,4 +1,4 @@
-# Agent session — News Reader
+# Project handoff — News Reader
 
 ## Start here
 
@@ -27,7 +27,7 @@ READER_TEST_SERVER=preview CI=1 npm run test:e2e
 Current verification: typecheck, 14 unit tests, production build, and 7 E2E flows
 (with one intentional skip) passed. Better Design spacing review passed at 100/100.
 
-## Next-agent rules
+## Next-maintainer rules
 
 - Preserve URL-backed filters, cancellation/race protection, cache/retry behavior,
   missing-image fallbacks, and keyboard-accessible dialogs/controls.
